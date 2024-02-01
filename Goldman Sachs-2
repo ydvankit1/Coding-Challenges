@@ -1,0 +1,38 @@
+2933.  https://leetcode.com/problems/high-access-employees/description/
+
+class Solution {
+public:
+        int time(string &a,string &b){
+            int hr1 = (a[0] - '0')*10 + (a[1] - '0');
+        int hr2= (b[0] - '0')*10 + (b[1] - '0');
+        int min1 = (a[2] - '0')*10 + (a[3] - '0');
+        int min2 = (b[2] - '0')*10 + (b[3] - '0');
+        if(hr1 == hr2){
+            return min2-min1;
+        }
+        else if(hr2- hr1 == 1){
+            return 60 - (min1-min2);
+        }
+        return INT_MAX;
+        }
+
+    vector<string> findHighAccessEmployees(vector<vector<string>>& access_times) {
+        unordered_map<string,vector<string>>mp;
+        for(auto it:access_times){
+            mp[it[0]].push_back(it[1]);
+        }
+        vector<string>ans;
+        for(auto &it:mp){
+            if(it.second.size()>=3){
+              sort(it.second.begin(),it.second.end());
+              for(int i=2;i<it.second.size();i++){
+                  if(time(it.second[i-2],it.second[i])<60){
+                      ans.push_back(it.first);
+                      break;
+                  }
+              }
+            }
+        }
+        return ans;
+    }
+};
