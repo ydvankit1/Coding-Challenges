@@ -1,0 +1,29 @@
+2513. https://leetcode.com/problems/minimize-the-maximum-of-two-arrays/description/
+
+class Solution {
+public:
+    bool valid(long long mid, long long divisor1, long long divisor2, long long cnt1, long long cnt2)
+    {
+        long long vd1 = mid-mid/divisor1; // not divided by div1
+        long long  vd2 = mid-mid/divisor2;  //not div by div2
+        long long lcm = (divisor1*divisor2)/__gcd(divisor1, divisor2);
+        long long validboth = mid-mid/lcm; //not div by both d1 and d2
+        return validboth>=cnt1+cnt2 and vd1>=cnt1 and  vd2>=cnt2; 
+    }    
+    int minimizeSet(int divisor1, int divisor2, int cnt1, int cnt2) {
+        int low = 0;
+        long long high = INT_MAX;
+        int ans = -1;
+        while(low <= high)
+        {
+            long long mid = (high+low)/2;
+            if(valid(mid, divisor1, divisor2, cnt1, cnt2)) // return true if their are sufficient number
+            {
+                ans = mid;
+                high = mid-1;  //so go to check if some minimized max number present
+            }
+            else low = mid+1; //else go to upper number
+        }
+        return ans;
+    }
+};
