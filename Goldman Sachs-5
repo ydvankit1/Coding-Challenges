@@ -1,0 +1,35 @@
+17. https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/
+
+class Solution {
+public: vector<string>ans;
+
+void find(string &digits, string currstr,int i,map<int,string> &mp){
+    if(i==digits.size()){
+        ans.push_back(currstr);
+        return;
+    }
+    for(auto chr:mp[digits[i]-'0']){
+        currstr.push_back(chr);
+    find(digits,currstr,i+1,mp);
+    currstr.pop_back();
+    }
+}
+
+    vector<string> letterCombinations(string digits) {
+        map<int,string>mp;
+        mp[2]="abc";
+        mp[3]="def";
+        mp[4]="ghi";
+        mp[5]="jkl";
+        mp[6]="mno";
+        mp[7]="pqrs";
+        mp[8]="tuv";
+        mp[9]="wxyz";
+        if(digits==""){
+            return ans;
+        }
+        string currstr="";
+        find(digits,currstr,0,mp);
+        return ans;
+    }
+};
