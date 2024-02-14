@@ -1,0 +1,32 @@
+299.  https://leetcode.com/problems/bulls-and-cows/description/
+
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+        int n=secret.size();
+        int bulls=0;
+        int cows=0;
+       unordered_map<int,int>mp;
+       for(auto it:secret){
+           mp[it]++;
+       }
+        for(int i=0;i<n;i++){
+            if(secret[i]==guess[i]){
+                  bulls++;
+                mp[secret[i]]--;
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(secret[i]!=guess[i] && mp[guess[i]]>0){  // already present in secret
+                cows++;
+                mp[guess[i]]--;
+            }
+        }
+        string ans;
+        ans+=to_string(bulls);
+        ans+="A";
+        ans+=to_string(cows);
+        ans+="B";
+        return ans;
+    }
+};
