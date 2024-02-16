@@ -1,0 +1,43 @@
+2976.  https://leetcode.com/problems/minimum-cost-to-convert-string-i/
+
+
+class Solution {
+public:
+    void flloyd_warshall(vector<vector<int>>& mat) {
+        int n = mat.size();
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (mat[i][k] < INT_MAX && mat[k][j] < INT_MAX) {
+                        mat[i][j] = min(mat[i][j], mat[i][k] + mat[k][j]);
+                    }
+                }
+            }
+        }
+    }
+    long long minimumCost(string source, string target, vector<char>& original,vector<char>& changed, vector<int>& cost) {
+        long long ans = 0;
+        vector<vector<int>> mat(26, vector<int>(26, INT_MAX));
+        int m = original.size();
+        for (int i = 0; i < m; i++) {
+            int strt = original[i] - 'a';
+            int end = changed[i] - 'a';
+            mat[strt][end] = min(mat[strt][end], cost[i]); //if more than 1 direct path from src to dest then take min cost
+        }
+        flloyd_warshall(mat);
+        int n = source.size();
+        for (int i = 0; i < n; i++) {
+            int x = source[i] - 'a';
+            int y = target[i] - 'a';
+            if (x == y) {
+                continue;
+            }
+            if (mat[x][y] == INT_MAX) {
+                return -1;
+            }
+            long long temp = mat[x][y];
+            ans += temp;
+        }
+        return ans;
+    }
+};
