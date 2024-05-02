@@ -8,7 +8,7 @@ Welcome to my repository containing solutions to the coding questions from the 3
 
 ## Overview
 
-This repository contains my solutions to the coding questions provided in the challenge. Each solution is implemented in [programming_language]. While some solutions may have multiple approaches, I've included the most optimal solution along with explanations where necessary.
+This repository contains my solutions to the coding questions provided in the challenge. Each solution is implemented in C++. I've included the most optimal solution along with explanations where necessary.
 
 ## Contributing
 
