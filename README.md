@@ -1,5 +1,3 @@
-Certainly! Here's a README.md template for your coding challenge solutions:
-
 Welcome to my repository containing solutions to the coding questions from the top companies. These questions are commonly asked in product-based companies, including FAANG (Facebook, Amazon, Apple, Netflix, Google), and are excellent preparation for technical interviews.
 
 ## Overview
