@@ -10,4 +10,4 @@ Contributions are welcome! If you have alternative solutions to any of the chall
 
 ## Acknowledgements
 
-Special thanks to Arsh Goyal for organizing this coding challenge and providing valuable practice questions for technical interviews.
+Special thanks to Arsh Goyal sir for organizing this coding challenge and providing valuable practice questions for technical interviews.
